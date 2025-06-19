@@ -27,3 +27,6 @@ export async function DELETE(request, { params }) {
 
   return Response.json({ success: true })
 }
+export function deleteTask(id) {
+  db.prepare('DELETE FROM tasks WHERE id = ?').run(id)
+}

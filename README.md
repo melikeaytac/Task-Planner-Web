@@ -29,3 +29,7 @@ git clone https://github.com/melikeaytac/Task-Planner-Web.git && \
 cd task-manager-app && \
 npm install && \
 npm run dev
+
+## 🔗 Canlı Yayın
+
+📍 Uygulama linki: (https://task-planner-web.onrender.com)

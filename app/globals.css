@@ -1,26 +1,228 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --green: #22c55e;
+  --green-hover: #16a34a;
+  --red: #ef4444;
+  --red-hover: #dc2626;
+  --blue: #3b82f6;
+  --blue-hover: #2563eb;
+  --yellow: #eab308;
+  --yellow-hover: #ca8a04;
+  --font-sans: Arial, Helvetica, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Genel stil */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 2rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Başlık */
+h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--blue);
+    justify-content: center; 
+
+}
+
+/* Form */
+form {
+  background: #111;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+input[type="text"],
+input[type="date"] {
+  all: unset; 
+  background: #1e1e1e;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="date"] {
+  max-width: 200px;
+}
+
+input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 4px var(--blue);
+  outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+
+button[type="submit"]:hover {
+  background-color: var(--blue-hover);
+}
+
+/* Görev kartları */
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Kartlar */
+.task-card {
+  background: #111;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.04);
+}
+
+.task-card p {
+  margin: 0.25rem 0;
+}
+
+/* Task Durumu */
+.task-status {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.task-status.active {
+  color: var(--blue);
+}
+
+.task-status.done {
+  color: var(--green);
+}
+
+/*Butonlar */
+.task-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.task-actions button {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.task-actions .toggle {
+  background-color: var(--green);
+}
+.task-actions .toggle:hover {
+  background-color: var(--green-hover);
+}
+
+.task-actions .undo {
+  background-color: var(--yellow);
+}
+.task-actions .undo:hover {
+  background-color: var(--yellow-hover);
+}
+
+.task-actions .delete {
+  background-color: var(--red);
+}
+.task-actions .delete:hover {
+  background-color: var(--red-hover);
+}
+.task-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  background: #111;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  justify-content: center; 
+}
+
+.task-form input[type="text"],
+.task-form input[type="date"] {
+  all: unset;
+  background: #1e1e1e;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-form input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 4px var(--blue);
+  outline: none;
+}
+
+.task-form input[name="title"],
+.task-form input[name="description"] {
+  flex: 1;
+  min-width: 150px;
+}
+
+.task-form input[type="date"] {
+  width: 160px;
+}
+
+.task-form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+/* Ekle butonu */
+.task-form button[type="submit"] {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+    margin-left: auto;
+  margin-right: auto;
+}
+
+.task-form button[type="submit"]:hover {
+  background-color: var(--blue-hover);
 }
